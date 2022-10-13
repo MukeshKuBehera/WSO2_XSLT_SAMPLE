@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/sample" name="XSLT_API" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <log>
+                <property name="STARTED" value="STARTED"/>
+            </log>
+            <propertyGroup>
+                <property expression="json-eval($.firstname)" name="firstname" scope="default" type="STRING"/>
+                <property expression="json-eval($.lastname)" name="lastname" scope="default" type="STRING"/>
+                <property expression="json-eval($.email)" name="email" scope="default" type="STRING"/>
+                <property expression="json-eval($.mobno)" name="mobno" scope="default" type="STRING"/>
+                <property expression="json-eval($.company)" name="company" scope="default" type="STRING"/>
+            </propertyGroup>
+            <log level="custom">
+                <property expression="get-property('firstname')" name="firstname"/>
+            </log>
+            <xslt key="conf:endpoints/XSLT_Reg.xslt">
+                <property expression="get-property('firstname')" name="firstname"/>
+                <property expression="get-property('lastname')" name="lastname"/>
+                <property expression="get-property('email')" name="email"/>
+                <property expression="get-property('mobno')" name="mobno"/>
+                <property expression="get-property('company')" name="company"/>
+            </xslt>
+            <property name="messageType" scope="axis2" type="STRING" value="text/xml"/>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/xml"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>

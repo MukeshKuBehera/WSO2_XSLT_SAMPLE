@@ -1,0 +1,10 @@
+---
+key: "XSLT_API-1.0.0"
+name : "XSLT_API"
+displayName : "XSLT_API"
+description: "Sample API"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/sample"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
